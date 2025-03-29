@@ -2016,17 +2016,17 @@
       <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-47DEQpj8HBSa\u002B/TImW\u002B5JCeuQeRkm5NMpJWZG3hSuFU="}]]]></EndpointProperties>
       <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"0"},{"Name":"Content-Type","Value":"text/html"},{"Name":"ETag","Value":"\u002247DEQpj8HBSa\u002B/TImW\u002B5JCeuQeRkm5NMpJWZG3hSuFU=\u0022"},{"Name":"Last-Modified","Value":"Sat, 29 Mar 2025 19:20:22 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
-    <StaticWebAssetEndpoint Include="_content/RealEstateManagement/pages/profile.bfn7oc5yai.html">
-      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\pages\profile.html'))</AssetFile>
-      <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"bfn7oc5yai"},{"Name":"integrity","Value":"sha256-VwpehhAZ\u002B8QdXt9CIRFOyBg\u002B\u002BJMs3MVoSdYDcdFGWxQ="},{"Name":"label","Value":"_content/RealEstateManagement/pages/profile.html"}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"15662"},{"Name":"Content-Type","Value":"text/html"},{"Name":"ETag","Value":"\u0022VwpehhAZ\u002B8QdXt9CIRFOyBg\u002B\u002BJMs3MVoSdYDcdFGWxQ=\u0022"},{"Name":"Last-Modified","Value":"Sat, 29 Mar 2025 19:20:22 GMT"}]]]></ResponseHeaders>
-    </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/RealEstateManagement/pages/profile.html">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\pages\profile.html'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-VwpehhAZ\u002B8QdXt9CIRFOyBg\u002B\u002BJMs3MVoSdYDcdFGWxQ="}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"15662"},{"Name":"Content-Type","Value":"text/html"},{"Name":"ETag","Value":"\u0022VwpehhAZ\u002B8QdXt9CIRFOyBg\u002B\u002BJMs3MVoSdYDcdFGWxQ=\u0022"},{"Name":"Last-Modified","Value":"Sat, 29 Mar 2025 19:20:22 GMT"}]]]></ResponseHeaders>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-HTis1q2tFBsMuv\u002BLopDTm6Ho0QNfBXlFuRMRkAZhEP0="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"12930"},{"Name":"Content-Type","Value":"text/html"},{"Name":"ETag","Value":"\u0022HTis1q2tFBsMuv\u002BLopDTm6Ho0QNfBXlFuRMRkAZhEP0=\u0022"},{"Name":"Last-Modified","Value":"Sat, 29 Mar 2025 22:26:36 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/RealEstateManagement/pages/profile.x7sdsfj8de.html">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\pages\profile.html'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"x7sdsfj8de"},{"Name":"integrity","Value":"sha256-HTis1q2tFBsMuv\u002BLopDTm6Ho0QNfBXlFuRMRkAZhEP0="},{"Name":"label","Value":"_content/RealEstateManagement/pages/profile.html"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"12930"},{"Name":"Content-Type","Value":"text/html"},{"Name":"ETag","Value":"\u0022HTis1q2tFBsMuv\u002BLopDTm6Ho0QNfBXlFuRMRkAZhEP0=\u0022"},{"Name":"Last-Modified","Value":"Sat, 29 Mar 2025 22:26:36 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/RealEstateManagement/pages/property.html">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\pages\property.html'))</AssetFile>

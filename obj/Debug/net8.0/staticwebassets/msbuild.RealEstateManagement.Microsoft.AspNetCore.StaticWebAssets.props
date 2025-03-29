@@ -3036,8 +3036,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>bfn7oc5yai</Fingerprint>
-      <Integrity>VwpehhAZ+8QdXt9CIRFOyBg++JMs3MVoSdYDcdFGWxQ=</Integrity>
+      <Fingerprint>x7sdsfj8de</Fingerprint>
+      <Integrity>HTis1q2tFBsMuv+LopDTm6Ho0QNfBXlFuRMRkAZhEP0=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\pages\profile.html'))</OriginalItemSpec>
