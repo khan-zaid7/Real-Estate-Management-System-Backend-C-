@@ -66,6 +66,7 @@ namespace RealEstateManagement.Controllers
                 NormalizedUserName = model.Email.ToUpper(),
                 Email = model.Email,
                 NormalizedEmail = model.Email.ToUpper(),
+                PhoneNumber = model.PhoneNumber
             };
 
             var result = await userManager.CreateAsync(user, model.Password);

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "96lbNmfj/ZrbJnV5/6j4V+Qjhm6FHI+p/sGAOwZ1oiA=",
+  "Hash": "wTrf6JoEzJmg39SLOBrGWp/UQU0SoH2qZWrAohGj2FQ=",
   "Source": "RealEstateManagement",
   "BasePath": "_content/RealEstateManagement",
   "Mode": "Default",
@@ -3517,8 +3517,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "snf0owo7dz",
-      "Integrity": "SCcyPbddLfJf0aOMs5pm46f/ktjFug9g1bkCEuqGy0A=",
+      "Fingerprint": "elmryqjoju",
+      "Integrity": "IuXOoEBPgipIGGWi7NKietCY4AZSCSfnzNlW21iV4WI=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\pages\\index.html"
@@ -17583,6 +17583,51 @@
       ]
     },
     {
+      "Route": "pages/index.elmryqjoju.html",
+      "AssetFile": "C:\\Users\\mdzai\\OneDrive\\Desktop\\RealEstateManagement\\RealEstateManagement\\wwwroot\\pages\\index.html",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "26942"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"IuXOoEBPgipIGGWi7NKietCY4AZSCSfnzNlW21iV4WI=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 29 Mar 2025 21:10:56 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "elmryqjoju"
+        },
+        {
+          "Name": "label",
+          "Value": "pages/index.html"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-IuXOoEBPgipIGGWi7NKietCY4AZSCSfnzNlW21iV4WI="
+        }
+      ]
+    },
+    {
       "Route": "pages/index.html",
       "AssetFile": "C:\\Users\\mdzai\\OneDrive\\Desktop\\RealEstateManagement\\RealEstateManagement\\wwwroot\\pages\\index.html",
       "Selectors": [],
@@ -17593,7 +17638,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "38856"
+          "Value": "26942"
         },
         {
           "Name": "Content-Type",
@@ -17601,11 +17646,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"SCcyPbddLfJf0aOMs5pm46f/ktjFug9g1bkCEuqGy0A=\""
+          "Value": "\"IuXOoEBPgipIGGWi7NKietCY4AZSCSfnzNlW21iV4WI=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 29 Mar 2025 19:20:22 GMT"
+          "Value": "Sat, 29 Mar 2025 21:10:56 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -17615,52 +17660,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-SCcyPbddLfJf0aOMs5pm46f/ktjFug9g1bkCEuqGy0A="
-        }
-      ]
-    },
-    {
-      "Route": "pages/index.snf0owo7dz.html",
-      "AssetFile": "C:\\Users\\mdzai\\OneDrive\\Desktop\\RealEstateManagement\\RealEstateManagement\\wwwroot\\pages\\index.html",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "38856"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/html"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"SCcyPbddLfJf0aOMs5pm46f/ktjFug9g1bkCEuqGy0A=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sat, 29 Mar 2025 19:20:22 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "snf0owo7dz"
-        },
-        {
-          "Name": "label",
-          "Value": "pages/index.html"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-SCcyPbddLfJf0aOMs5pm46f/ktjFug9g1bkCEuqGy0A="
+          "Value": "sha256-IuXOoEBPgipIGGWi7NKietCY4AZSCSfnzNlW21iV4WI="
         }
       ]
     },

@@ -26,7 +26,6 @@ C:\Users\mdzai\OneDrive\Desktop\RealEstateManagement\RealEstateManagement\obj\De
 C:\Users\mdzai\OneDrive\Desktop\RealEstateManagement\RealEstateManagement\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.RealEstateManagement.props
 C:\Users\mdzai\OneDrive\Desktop\RealEstateManagement\RealEstateManagement\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.RealEstateManagement.props
 C:\Users\mdzai\OneDrive\Desktop\RealEstateManagement\RealEstateManagement\obj\Debug\net8.0\staticwebassets.pack.json
-C:\Users\mdzai\OneDrive\Desktop\RealEstateManagement\RealEstateManagement\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
 C:\Users\mdzai\OneDrive\Desktop\RealEstateManagement\RealEstateManagement\obj\Debug\net8.0\RealEstateManagement.dll
 C:\Users\mdzai\OneDrive\Desktop\RealEstateManagement\RealEstateManagement\obj\Debug\net8.0\refint\RealEstateManagement.dll
 C:\Users\mdzai\OneDrive\Desktop\RealEstateManagement\RealEstateManagement\obj\Debug\net8.0\RealEstateManagement.pdb
@@ -182,3 +181,5 @@ C:\Users\mdzai\OneDrive\Desktop\RealEstateManagement\RealEstateManagement\bin\De
 C:\Users\mdzai\OneDrive\Desktop\RealEstateManagement\RealEstateManagement\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
 C:\Users\mdzai\OneDrive\Desktop\RealEstateManagement\RealEstateManagement\bin\Debug\net8.0\Microsoft.Extensions.Identity.Core.dll
 C:\Users\mdzai\OneDrive\Desktop\RealEstateManagement\RealEstateManagement\bin\Debug\net8.0\Microsoft.Extensions.Identity.Stores.dll
+C:\Users\mdzai\OneDrive\Desktop\RealEstateManagement\RealEstateManagement\obj\Debug\net8.0\RealEstateManagement.sourcelink.json
+C:\Users\mdzai\OneDrive\Desktop\RealEstateManagement\RealEstateManagement\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

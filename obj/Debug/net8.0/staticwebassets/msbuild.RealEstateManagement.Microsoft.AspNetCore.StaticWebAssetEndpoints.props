@@ -1968,17 +1968,17 @@
       <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"mq1llxnuyw"},{"Name":"integrity","Value":"sha256-DkXAfkaYxqRyOIZHWytfkaxw\u002BNm7KxtfWAWtSi\u002BltS4="},{"Name":"label","Value":"_content/RealEstateManagement/pages/feature.html"}]]]></EndpointProperties>
       <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"15364"},{"Name":"Content-Type","Value":"text/html"},{"Name":"ETag","Value":"\u0022DkXAfkaYxqRyOIZHWytfkaxw\u002BNm7KxtfWAWtSi\u002BltS4=\u0022"},{"Name":"Last-Modified","Value":"Sat, 29 Mar 2025 19:20:22 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/RealEstateManagement/pages/index.elmryqjoju.html">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\pages\index.html'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"elmryqjoju"},{"Name":"integrity","Value":"sha256-IuXOoEBPgipIGGWi7NKietCY4AZSCSfnzNlW21iV4WI="},{"Name":"label","Value":"_content/RealEstateManagement/pages/index.html"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"26942"},{"Name":"Content-Type","Value":"text/html"},{"Name":"ETag","Value":"\u0022IuXOoEBPgipIGGWi7NKietCY4AZSCSfnzNlW21iV4WI=\u0022"},{"Name":"Last-Modified","Value":"Sat, 29 Mar 2025 21:10:56 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/RealEstateManagement/pages/index.html">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\pages\index.html'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-SCcyPbddLfJf0aOMs5pm46f/ktjFug9g1bkCEuqGy0A="}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"38856"},{"Name":"Content-Type","Value":"text/html"},{"Name":"ETag","Value":"\u0022SCcyPbddLfJf0aOMs5pm46f/ktjFug9g1bkCEuqGy0A=\u0022"},{"Name":"Last-Modified","Value":"Sat, 29 Mar 2025 19:20:22 GMT"}]]]></ResponseHeaders>
-    </StaticWebAssetEndpoint>
-    <StaticWebAssetEndpoint Include="_content/RealEstateManagement/pages/index.snf0owo7dz.html">
-      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\pages\index.html'))</AssetFile>
-      <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"snf0owo7dz"},{"Name":"integrity","Value":"sha256-SCcyPbddLfJf0aOMs5pm46f/ktjFug9g1bkCEuqGy0A="},{"Name":"label","Value":"_content/RealEstateManagement/pages/index.html"}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"38856"},{"Name":"Content-Type","Value":"text/html"},{"Name":"ETag","Value":"\u0022SCcyPbddLfJf0aOMs5pm46f/ktjFug9g1bkCEuqGy0A=\u0022"},{"Name":"Last-Modified","Value":"Sat, 29 Mar 2025 19:20:22 GMT"}]]]></ResponseHeaders>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-IuXOoEBPgipIGGWi7NKietCY4AZSCSfnzNlW21iV4WI="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"26942"},{"Name":"Content-Type","Value":"text/html"},{"Name":"ETag","Value":"\u0022IuXOoEBPgipIGGWi7NKietCY4AZSCSfnzNlW21iV4WI=\u0022"},{"Name":"Last-Modified","Value":"Sat, 29 Mar 2025 21:10:56 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/RealEstateManagement/pages/inquiries.77wwoez56i.html">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\pages\inquiries.html'))</AssetFile>

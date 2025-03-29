@@ -23,8 +23,8 @@ namespace RealEstateManagement.Services
                 // Add roles
                 logger.LogInformation("Seeding roles.");
                 await AddRoleAsync(roleManager, "Admin");
-                await AddRoleAsync(roleManager, "Seller");
-                await AddRoleAsync(roleManager, "Buyer");
+                await AddRoleAsync(roleManager, "Agent");
+                await AddRoleAsync(roleManager, "User");
 
                 // Add admin user
                 logger.LogInformation("Seeding admin user");
