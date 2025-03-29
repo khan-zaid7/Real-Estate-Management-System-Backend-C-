@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" type="text/css" href="~/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="~/css/bootstrap-slider.css">
+    <link rel="stylesheet" type="text/css" href="~/css/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="~/css/layerslider.css">
+    <link rel="stylesheet" type="text/css" href="~/css/color.css">
+    <link rel="stylesheet" type="text/css" href="~/css/owl.carousel.min.css">
+    <link rel="stylesheet" type="text/css" href="~/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="~/fonts/flaticon/flaticon.css">
+    <link rel="stylesheet" type="text/css" href="~/css/style.css">
+    <link rel="stylesheet" type="text/css" href="~/css/login.css">
+    <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,500,600,700&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Comfortaa:400,700" rel="stylesheet">
+</head>
+<body>
+    <div>
+        <div id="row">
+            <partial name="_HeaderPartial" />
+            @RenderBody()
+            <partial name="_FooterPartial" />
+
+
+        </div>
+    </div>
+
+    <script src="~/js/jquery.min.js"></script>
+    <script src="~/js/greensock.js"></script>
+    <script src="~/js/layerslider.transitions.js"></script>
+    <script src="~/js/layerslider.kreaturamedia.jquery.js"></script>
+    <script src="~/js/popper.min.js"></script>
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="~/js/owl.carousel.min.js"></script>
+    <script src="~/js/tmpl.js"></script>
+    <script src="~/js/jquery.dependClass-0.1.js"></script>
+    <script src="~/js/draggable-0.1.js"></script>
+    <script src="~/js/jquery.slider.js"></script>
+    <script src="~/js/wow.js"></script>
+    <script src="~/js/custom.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
