@@ -1,0 +1,49 @@
+﻿wwwroot/uploads/
+## Ignore build results ##
+bin/
+obj/
+out/
+
+## User-specific files ##
+.idea/
+.vscode/
+.vs/
+
+## User-specific files for Visual Studio ##
+.vs2019/
+.vs2017/
+.vs/
+
+## Ignore ASP.NET temporary files ##
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+## Ignore build artifacts from dotnet publish ##
+publish/
+
+## Ignore files related to package managers ##
+*.nupkg
+*.snupkg
+
+## Ignore logs ##
+*.log
+*.tlog
+
+## Ignore .NET Core SDK folders ##
+.DNX/
+.DNU/
+packages/
+
+## Ignore Visual Studio for Mac files ##
+.vscode/
+
+## Ignore Rider (JetBrains) specific files ##
+.idea/
+
+## Ignore coverage results ##
+coverage/
+
+## Ignore NuGet packages ##
+*.nupkg
+.nuget/

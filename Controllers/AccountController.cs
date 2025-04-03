@@ -23,8 +23,14 @@ namespace RealEstateManagement.Controllers
         [HttpGet]
         public IActionResult Login()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             return View();
         }
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -35,16 +41,35 @@ namespace RealEstateManagement.Controllers
                 return View(model);
             }
 
-            var result = await signInManager.PasswordSignInAsync(model.Email, model.Password, false, lockoutOnFailure: false);
+            var user = await userManager.FindByEmailAsync(model.Email);
+            if (user == null)
+            {
+                ModelState.AddModelError(string.Empty, "Invalid Login Attempt.");
+                return View(model);
+            }
+
+            var result = await signInManager.PasswordSignInAsync(user, model.Password, false, lockoutOnFailure: false);
 
             if (result.Succeeded)
             {
-                return RedirectToAction("Index", "Home");
+                // Check user roles
+                var roles = await userManager.GetRolesAsync(user);
+
+                if (roles.Contains("Agent"))
+                {
+                    return RedirectToAction("SellerDashboard", "Property"); // Agent redirection
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home"); // Default home page
+                }
             }
+
 
             ModelState.AddModelError(string.Empty, "Invalid Login Attempt.");
             return View(model);
         }
+
 
         [HttpGet]
         public IActionResult Register()

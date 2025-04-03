@@ -1,0 +1,93 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<User> signInManager;
+
+@{
+    ViewData["title"] = "Login";
+    Layout = "~/Views/Shared/_AccountLayout.cshtml";
+}
+
+@model List<RealEstateManagement.Models.Property>
+
+@if (User.IsInRole("Agent"))
+    {
+        <div class="content container-fluid">
+            <div class="page-header">
+                <div class="row">
+                    <div class="col">
+                        <h3 class="page-title">Seller Dashboard</h3>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home">Dashboard</a></li>
+                            <li class="breadcrumb-item active">Seller Dashboard</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-12">
+                    <a asp-action="AddProperty" asp-controller="Property" class="btn btn-primary">
+                        <i class="fa fa-plus"></i> Add New Property
+                    </a>
+                    <a asp-action="Inquiries" asp-controller="Property" class="btn btn-info">
+                        <i class="fa fa-envelope"></i> View Inquiries
+                    </a>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Your Properties</h4>
+                        </div>
+                        <div class="card-body">
+                        @if (Model != null && Model.Any())
+                        {
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Title</th>
+                                        <th>Type</th>
+                                        <th>Price</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var property in Model)
+                                    {
+                                        <tr>
+                                            <td>@property.Id</td>
+                                            <td>@property.Title</td>
+                                            <td>@property.PropertyType</td>
+                                            <td>@property.Price</td>
+                                            <td>
+                                                <span class="badge @(property.Status == "available" ? "badge-success" : "badge-danger")">
+                                                    @property.Status
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <a asp-action="EditProperty" asp-controller="Property" asp-route-id="@property.Id" class="btn btn-sm btn-primary">
+                                                    <i class="fa fa-edit"></i> Edit
+                                                </a>
+                                                <a asp-action="Delete" asp-controller="Property" asp-route-id="@property.Id" class="btn btn-sm btn-danger">
+                                                    <i class="fa fa-trash"></i> Delete
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        }
+                        else
+                        {
+                            <p>No properties found.</p>
+                        }
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }

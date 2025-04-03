@@ -1,5 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Identity;
 @inject SignInManager<User> signInManager;
+@model IEnumerable<RealEstateManagement.Models.Property>
 
 @{
     ViewData["Title"] = "Home Page";
@@ -18,7 +19,7 @@
                             <span class="text-success">Let us</span><br>
                             Guide you Home
                         </h1>
-                        <form method="post" action="propertygrid.html">
+                        <form method="get" action="@Url.Action("Index", "Home")">
                             <div class="row">
                                 <div class="col-md-6 col-lg-2">
                                     <div class="form-group">
@@ -44,7 +45,7 @@
                                 </div>
                                 <div class="col-md-8 col-lg-6">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" name="city" placeholder="Enter City" required>
+                                        <input type="text" class="form-control" name="city" placeholder="Enter City">
                                     </div>
                                 </div>
                                 <div class="col-md-4 col-lg-2">
@@ -54,6 +55,7 @@
                                 </div>
                             </div>
                         </form>
+
                     </div>
                 </div>
             </div>
@@ -116,126 +118,53 @@
                     <div class="tab-content mt-4" id="pills-tabContent">
                         <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home">
                             <div class="row">
-                                <div class="col-md-6 col-lg-4">
-                                    <div class="featured-thumb hover-zoomer mb-4">
-                                        <div class="overlay-black overflow-hidden position-relative">
-                                            <img src="images/property/property-image.jpg" alt="pimage">
-                                            <div class="featured bg-success text-white">New</div>
-                                            <div class="sale bg-success text-white text-capitalize">For Sale</div>
-                                            <div class="price text-primary"><b>$Property Price</b><span class="text-white">Property Size Sqft</span></div>
-                                        </div>
-                                        <div class="featured-thumb-data shadow-one">
-                                            <div class="p-3">
-                                                <h5 class="text-secondary hover-text-success mb-2 text-capitalize"><a href="propertydetail.html?pid=1">Property Name</a></h5>
-                                                <span class="location text-capitalize"><i class="fas fa-map-marker-alt text-success"></i> Property Location</span>
+                                @foreach (var property in Model.Where(p => p.IsFeatured))
+                                {
+                                    <div class="col-md-6 col-lg-4">
+                                        <div class="featured-thumb hover-zoomer mb-4">
+                                            <div class="overlay-black overflow-hidden position-relative">
+                                                <img src="@property.Image1" alt="@property.Title">
+                                                <div class="featured bg-success text-white">New</div>
+                                                <div class="sale bg-success text-white text-capitalize">@property.SellingType</div>
+                                                <div class="price text-primary">
+                                                    <b>$@property.Price</b>
+                                                    <span class="text-white">@property.AreaSize Sqft</span>
+                                                </div>
                                             </div>
-                                            <div class="bg-gray quantity px-4 pt-4">
-                                                <ul>
-                                                    <li><span>Property Size</span> Sqft</li>
-                                                    <li><span>Beds</span> Beds</li>
-                                                    <li><span>Baths</span> Baths</li>
-                                                    <li><span>Kitchen</span> Kitchen</li>
-                                                    <li><span>Balcony</span> Balcony</li>
-                                                </ul>
-                                            </div>
-                                            <div class="p-4 d-inline-block w-100">
-                                                <div class="float-left text-capitalize"><i class="fas fa-user text-success mr-1"></i>By : Agent Name</div>
-                                                <div class="float-right"><i class="far fa-calendar-alt text-success mr-1"></i> Date</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-lg-4">
-                                    <div class="featured-thumb hover-zoomer mb-4">
-                                        <div class="overlay-black overflow-hidden position-relative">
-                                            <img src="images/property/property-image.jpg" alt="pimage">
-                                            <div class="featured bg-success text-white">New</div>
-                                            <div class="sale bg-success text-white text-capitalize">For Sale</div>
-                                            <div class="price text-primary"><b>$Property Price</b><span class="text-white">Property Size Sqft</span></div>
-                                        </div>
-                                        <div class="featured-thumb-data shadow-one">
-                                            <div class="p-3">
-                                                <h5 class="text-secondary hover-text-success mb-2 text-capitalize"><a href="propertydetail.html?pid=1">Property Name</a></h5>
-                                                <span class="location text-capitalize"><i class="fas fa-map-marker-alt text-success"></i> Property Location</span>
-                                            </div>
-                                            <div class="bg-gray quantity px-4 pt-4">
-                                                <ul>
-                                                    <li><span>Property Size</span> Sqft</li>
-                                                    <li><span>Beds</span> Beds</li>
-                                                    <li><span>Baths</span> Baths</li>
-                                                    <li><span>Kitchen</span> Kitchen</li>
-                                                    <li><span>Balcony</span> Balcony</li>
-                                                </ul>
-                                            </div>
-                                            <div class="p-4 d-inline-block w-100">
-                                                <div class="float-left text-capitalize"><i class="fas fa-user text-success mr-1"></i>By : Agent Name</div>
-                                                <div class="float-right"><i class="far fa-calendar-alt text-success mr-1"></i> Date</div>
+                                            <div class="featured-thumb-data shadow-one">
+                                                <div class="p-3">
+                                                    <h5 class="text-secondary hover-text-success mb-2 text-capitalize">
+                                                        <a href="propertydetail.html?pid=@property.Id">@property.Title</a>
+                                                    </h5>
+                                                    <span class="location text-capitalize">
+                                                        <i class="fas fa-map-marker-alt text-success"></i> @property.City, @property.State
+                                                    </span>
+                                                </div>
+                                                <div class="bg-gray quantity px-4 pt-4">
+                                                    <ul>
+                                                        <li><span>Size</span> @property.AreaSize Sqft</li>
+                                                        <li><span>Beds</span> @property.Bedroom</li>
+                                                        <li><span>Baths</span> @property.Bathroom</li>
+                                                        <li><span>Kitchen</span> @property.Kitchen</li>
+                                                        <li><span>Balcony</span> @property.Balcony</li>
+                                                    </ul>
+                                                </div>
+                                                <div class="p-4 d-inline-block w-100">
+                                                    <div class="float-left text-capitalize">
+                                                        <i class="fas fa-user text-success mr-1"></i> By : @property.User.UserName
+                                                    </div>
+                                                    <div class="float-right">
+                                                        <i class="far fa-calendar-alt text-success mr-1"></i> @DateTime.Now.ToShortDateString()
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-md-6 col-lg-4">
-                                    <div class="featured-thumb hover-zoomer mb-4">
-                                        <div class="overlay-black overflow-hidden position-relative">
-                                            <img src="images/property/property-image.jpg" alt="pimage">
-                                            <div class="featured bg-success text-white">New</div>
-                                            <div class="sale bg-success text-white text-capitalize">For Sale</div>
-                                            <div class="price text-primary"><b>$Property Price</b><span class="text-white">Property Size Sqft</span></div>
-                                        </div>
-                                        <div class="featured-thumb-data shadow-one">
-                                            <div class="p-3">
-                                                <h5 class="text-secondary hover-text-success mb-2 text-capitalize"><a href="propertydetail.html?pid=1">Property Name</a></h5>
-                                                <span class="location text-capitalize"><i class="fas fa-map-marker-alt text-success"></i> Property Location</span>
-                                            </div>
-                                            <div class="bg-gray quantity px-4 pt-4">
-                                                <ul>
-                                                    <li><span>Property Size</span> Sqft</li>
-                                                    <li><span>Beds</span> Beds</li>
-                                                    <li><span>Baths</span> Baths</li>
-                                                    <li><span>Kitchen</span> Kitchen</li>
-                                                    <li><span>Balcony</span> Balcony</li>
-                                                </ul>
-                                            </div>
-                                            <div class="p-4 d-inline-block w-100">
-                                                <div class="float-left text-capitalize"><i class="fas fa-user text-success mr-1"></i>By : Agent Name</div>
-                                                <div class="float-right"><i class="far fa-calendar-alt text-success mr-1"></i> Date</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-lg-4">
-                                    <div class="featured-thumb hover-zoomer mb-4">
-                                        <div class="overlay-black overflow-hidden position-relative">
-                                            <img src="images/property/property-image.jpg" alt="pimage">
-                                            <div class="featured bg-success text-white">New</div>
-                                            <div class="sale bg-success text-white text-capitalize">For Sale</div>
-                                            <div class="price text-primary"><b>$Property Price</b><span class="text-white">Property Size Sqft</span></div>
-                                        </div>
-                                        <div class="featured-thumb-data shadow-one">
-                                            <div class="p-3">
-                                                <h5 class="text-secondary hover-text-success mb-2 text-capitalize"><a href="propertydetail.html?pid=1">Property Name</a></h5>
-                                                <span class="location text-capitalize"><i class="fas fa-map-marker-alt text-success"></i> Property Location</span>
-                                            </div>
-                                            <div class="bg-gray quantity px-4 pt-4">
-                                                <ul>
-                                                    <li><span>Property Size</span> Sqft</li>
-                                                    <li><span>Beds</span> Beds</li>
-                                                    <li><span>Baths</span> Baths</li>
-                                                    <li><span>Kitchen</span> Kitchen</li>
-                                                    <li><span>Balcony</span> Balcony</li>
-                                                </ul>
-                                            </div>
-                                            <div class="p-4 d-inline-block w-100">
-                                                <div class="float-left text-capitalize"><i class="fas fa-user text-success mr-1"></i>By : Agent Name</div>
-                                                <div class="float-right"><i class="far fa-calendar-alt text-success mr-1"></i> Date</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                }
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>  
             </div>
         </div>
     </div>
@@ -371,88 +300,6 @@
     <!-- End Scroll To top -->
 }
 
-@if (User.IsInRole("Agent"))
-{
-
-
-
-<div class="content container-fluid">
-
-    <!-- Page Header -->
-    <div class="page-header">
-        <div class="row">
-            <div class="col">
-                <h3 class="page-title">Seller Dashboard</h3>
-                <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="dashboard.html">Dashboard</a></li>
-                    <li class="breadcrumb-item active">Seller Dashboard</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <!-- /Page Header -->
-    <!-- Buttons Section -->
-    <div class="row mb-3">
-        <div class="col-md-12">
-            <a href="submitproperty.html" class="btn btn-primary">
-                <i class="fa fa-plus"></i> Add New Property
-            </a>
-            <a href="inquiries.html" class="btn btn-info">
-                <i class="fa fa-envelope"></i> View Inquiries
-            </a>
-        </div>
-    </div>
-    <!-- /Buttons Section -->
-    <!-- Properties List -->
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-header">
-                    <h4 class="card-title">Your Properties</h4>
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-hover table-center mb-0">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Title</th>
-                                    <th>Type</th>
-                                    <th>Price</th>
-                                    <th>Status</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <!-- Example Property Row -->
-                                <tr>
-                                    <td>1</td>
-                                    <td>Beautiful Apartment</td>
-                                    <td>Apartment</td>
-                                    <td>$200,000</td>
-                                    <td><span class="badge badge-success">Available</span></td>
-                                    <td>
-                                        <a href="submitpropertyupdate.html" class="btn btn-sm btn-primary">
-                                            <i class="fa fa-edit"></i> Edit
-                                        </a>
-                                        <a href="delete-property.html?id=1" class="btn btn-sm btn-danger">
-                                            <i class="fa fa-trash"></i> Delete
-                                        </a>
-                                    </td>
-                                </tr>
-                                <!-- End Example Property Row -->
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- /Properties List -->
-
-</div>
-
-}
 
 
 

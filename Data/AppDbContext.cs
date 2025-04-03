@@ -11,5 +11,7 @@ namespace RealEstateManagement.Data
         {
 
         }
+        // Add the DbSet for Properties
+        public DbSet<Property> Properties { get; set; }
     }
 }
