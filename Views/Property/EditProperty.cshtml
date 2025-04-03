@@ -2,7 +2,8 @@
 	ViewData["Title"] = "Add Property";
 	Layout = "~/Views/Shared/_AccountLayout.cshtml";
 }
-@model PropertyViewModel
+@using RealEstateManagement.ViewModel
+@model EditPropertyViewModel
 
 <div class="full-row">
 	<div class="container">
@@ -12,7 +13,7 @@
 			</div>
 		</div>
 		<div class="row p-5 bg-white">
-			<form method="post" asp-action="AddProperty" enctype="multipart/form-data">
+			<form method="post" asp-action="EditProperty" enctype="multipart/form-data">
 				@Html.AntiForgeryToken()
 				<div asp-validation-summary="ModelOnly" class="text-danger"></div>
 				<div class="description">
@@ -181,21 +182,21 @@
 								<div class="col-lg-9">
 									<select class="form-control" required asp-for="TotalFloor">
 										<option value="">Select Floor</option>
-										<option value="1 Floor">1 Floor</option>
-										<option value="2 Floor">2 Floor</option>
-										<option value="3 Floor">3 Floor</option>
-										<option value="4 Floor">4 Floor</option>
-										<option value="5 Floor">5 Floor</option>
-										<option value="6 Floor">6 Floor</option>
-										<option value="7 Floor">7 Floor</option>
-										<option value="8 Floor">8 Floor</option>
-										<option value="9 Floor">9 Floor</option>
-										<option value="10 Floor">10 Floor</option>
-										<option value="11 Floor">11 Floor</option>
-										<option value="12 Floor">12 Floor</option>
-										<option value="13 Floor">13 Floor</option>
-										<option value="14 Floor">14 Floor</option>
-										<option value="15 Floor">15 Floor</option>
+										<option value="1">1 Floor</option>
+										<option value="2">2 Floor</option>
+										<option value="3">3 Floor</option>
+										<option value="4">4 Floor</option>
+										<option value="5">5 Floor</option>
+										<option value="6">6 Floor</option>
+										<option value="7">7 Floor</option>
+										<option value="8">8 Floor</option>
+										<option value="9">9 Floor</option>
+										<option value="10">10 Floor</option>
+										<option value="11">11 Floor</option>
+										<option value="12">12 Floor</option>
+										<option value="13">13 Floor</option>
+										<option value="14">14 Floor</option>
+										<option value="15">15 Floor</option>
 									</select>
 								</div>
 								<span asp-validation-for="TotalFloor" class="text-danger"></span>
@@ -228,7 +229,18 @@
 							<div class="form-group row">
 								<label class="col-lg-3 col-form-label">Image 1</label>
 								<div class="col-lg-9">
-									<input class="form-control" asp-for="Image1" type="file" required="">
+									<input class="form-control" asp-for="Image1" type="file" data-val="false">
+									<div class="mt-2">
+										@if (!string.IsNullOrEmpty(Model.Image1Url))
+										{
+											<img src="@Model.Image1Url" width="100" class="img-thumbnail" />
+											<div class="form-text text-muted">Current image (leave blank to keep)</div>
+										}
+										else
+										{
+											<span class="text-muted">No image currently uploaded.</span>
+										}
+									</div>
 								</div>
 								<span asp-validation-for="Image1" class="text-danger"></span>
 
@@ -236,7 +248,18 @@
 							<div class="form-group row">
 								<label class="col-lg-3 col-form-label">Image 2</label>
 								<div class="col-lg-9">
-									<input class="form-control" asp-for="Image2" type="file" required="">
+									<input class="form-control" asp-for="Image2" type="file">
+									<div class="mt-2">
+										@if (!string.IsNullOrEmpty(Model.Image2Url))
+										{
+											<img src="@Model.Image2Url" width="100" class="img-thumbnail" />
+											<div class="form-text text-muted">Current image (leave blank to keep)</div>
+										}
+										else
+										{
+											<span class="text-muted">No image currently uploaded.</span>
+										}
+									</div>
 								</div>
 								<span asp-validation-for="Image2" class="text-danger"></span>
 
@@ -244,7 +267,18 @@
 							<div class="form-group row">
 								<label class="col-lg-3 col-form-label">Image 4</label>
 								<div class="col-lg-9">
-									<input class="form-control" asp-for="Image4" type="file" required="">
+									<input class="form-control" asp-for="Image4" type="file" >
+									<div class="mt-2">
+										@if (!string.IsNullOrEmpty(Model.Image4Url))
+										{
+											<img src="@Model.Image4Url" width="100" class="img-thumbnail" />
+											<div class="form-text text-muted">Current image (leave blank to keep)</div>
+										}
+										else
+										{
+											<span class="text-muted">No image currently uploaded.</span>
+										}
+									</div>
 								</div>
 								<span asp-validation-for="Image4" class="text-danger"></span>
 
@@ -267,7 +301,18 @@
 							<div class="form-group row">
 								<label class="col-lg-3 col-form-label">image 3</label>
 								<div class="col-lg-9">
-									<input class="form-control" asp-for="Image3" type="file" required="">
+									<input class="form-control" asp-for="Image3" type="file" >
+									<div class="mt-2">
+										@if (!string.IsNullOrEmpty(Model.Image3Url))
+										{
+											<img src="@Model.Image3Url" width="100" class="img-thumbnail" />
+											<div class="form-text text-muted">Current image (leave blank to keep)</div>
+										}
+										else
+										{
+											<span class="text-muted">No image currently uploaded.</span>
+										}
+									</div>
 								</div>
 								<span asp-validation-for="Image3" class="text-danger"></span>
 
@@ -277,6 +322,17 @@
 								<label class="col-lg-3 col-form-label">Floor Plan Image</label>
 								<div class="col-lg-9">
 									<input class="form-control" asp-for="FloorPlanImage" type="file">
+									<div class="mt-2">
+										@if (!string.IsNullOrEmpty(Model.FloorPlanImageUrl))
+										{
+											<img src="@Model.FloorPlanImageUrl" width="100" class="img-thumbnail" />
+											<div class="form-text text-muted">Current image (leave blank to keep)</div>
+										}
+										else
+										{
+											<span class="text-muted">No image currently uploaded.</span>
+										}
+									</div>
 								</div>
 								<span asp-validation-for="FloorPlanImage" class="text-danger"></span>
 

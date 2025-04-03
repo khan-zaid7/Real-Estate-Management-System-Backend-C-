@@ -74,11 +74,6 @@ public class HomeController : Controller
         return View(filteredProperties);
     }
 
-
-
-
-
-
     public IActionResult Privacy()
     {
         return View();

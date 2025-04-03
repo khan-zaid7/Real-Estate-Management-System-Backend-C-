@@ -5,6 +5,7 @@ using RealEstateManagement.Models;
 using RealEstateManagement.ViewModel;
 using RealEstateManagement.Data;
 using Microsoft.EntityFrameworkCore;
+using System.Text;
 
 namespace RealEstateManagement.Controllers
 {
@@ -54,29 +55,47 @@ namespace RealEstateManagement.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View(model);
+                // Collect all validation errors
+                var errorMessages = new StringBuilder();
+                foreach (var state in ModelState)
+                {
+                    if (state.Value.Errors.Count > 0)
+                    {
+                        foreach (var error in state.Value.Errors)
+                        {
+                            errorMessages.AppendLine($"Error in field '{state.Key}': {error.ErrorMessage}");
+                        }
+                    }
+                }
+
+                // Return validation error response
+                return Content($"Validation failed! Here are the errors: {errorMessages.ToString()}");
             }
 
             try
             {
+                // Ensure the user is authenticated
                 var user = await _userManager.GetUserAsync(User);
-                if (user == null) return Unauthorized();
-
-                // Validate required files
-                if (model.Image1 == null || model.Image1.Length == 0)
+                if (user == null)
                 {
-                    ModelState.AddModelError("Image1", "Main image is required");
-                    return View(model);
+                    return Unauthorized(); // Return Unauthorized if no user is found
                 }
 
-                // Save files
-                string image1Path = await SaveFile(model.Image1);
-                string image2Path = model.Image2 != null ? await SaveFile(model.Image2) : null;
-                string image3Path = model.Image3 != null ? await SaveFile(model.Image3) : null;
-                string image4Path = model.Image4 != null ? await SaveFile(model.Image4) : null;
-                string floorPlanPath = model.FloorPlanImage != null ? await SaveFile(model.FloorPlanImage) : null;
+                // Validate required files (ensure Image1 is uploaded)
+                if (model.Image1 == null || model.Image1.Length == 0)
+                {
+                    ModelState.AddModelError("Image1", "Main image is required.");
+                    return View(model); // Return the view with the error if Image1 is missing
+                }
 
-                // Map to entity
+                // Save image files
+                string image1Path = await SaveFile(model.Image1);
+                string image2Path = model.Image2 != null && model.Image2.Length > 0 ? await SaveFile(model.Image2) : null;
+                string image3Path = model.Image3 != null && model.Image3.Length > 0 ? await SaveFile(model.Image3) : null;
+                string image4Path = model.Image4 != null && model.Image4.Length > 0 ? await SaveFile(model.Image4) : null;
+                string floorPlanPath = model.FloorPlanImage != null && model.FloorPlanImage.Length > 0 ? await SaveFile(model.FloorPlanImage) : null;
+
+                // Create the property object
                 var property = new Property
                 {
                     Title = model.Title,
@@ -97,7 +116,7 @@ namespace RealEstateManagement.Controllers
                     TotalFloor = model.TotalFloor,
                     AreaSize = model.AreaSize,
                     Address = model.Address,
-                    Feature = "",
+                    Feature = model.Feature,
                     Image1 = image1Path,
                     Image2 = image2Path,
                     Image3 = image3Path,
@@ -105,23 +124,19 @@ namespace RealEstateManagement.Controllers
                     FloorPlanImage = floorPlanPath,
                     IsFeatured = model.IsFeatured,
                     UserId = user.Id
-                    
                 };
-                
-                Console.Write(property);
 
+                // Save the property to the database
                 _context.Properties.Add(property);
                 await _context.SaveChangesAsync();
 
                 TempData["SuccessMessage"] = "Property added successfully!";
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Home"); // Redirect to home page
             }
             catch (Exception ex)
             {
-                //_logger.LogError(ex, "Error adding property");
-                ModelState.AddModelError("", ex.InnerException?.Message ?? "An error occurred");
-
-                return View(model);
+                ModelState.AddModelError("", ex.InnerException?.Message ?? "An error occurred while adding the property.");
+                return View(model); // Return the view with the error message
             }
         }
 
@@ -141,7 +156,7 @@ namespace RealEstateManagement.Controllers
             }
 
             // Map existing property to the view model
-            var model = new PropertyViewModel
+            var model = new EditPropertyViewModel
             {
                 Id = property.Id,
                 Title = property.Title,
@@ -177,7 +192,7 @@ namespace RealEstateManagement.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> EditProperty(int id, PropertyViewModel model)
+        public async Task<IActionResult> EditProperty(int id, EditPropertyViewModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -261,23 +276,32 @@ namespace RealEstateManagement.Controllers
         {
             if (file == null || file.Length == 0)
             {
-                return null;
+                return null; // Return null if no file is provided
             }
 
-            // Generate a unique filename
-            var fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
-            var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads", fileName);
-
-            // Ensure directory exists
-            Directory.CreateDirectory(Path.GetDirectoryName(filePath));
-
-            // Save the file
-            using (var stream = new FileStream(filePath, FileMode.Create))
+            try
             {
-                await file.CopyToAsync(stream);
-            }
+                // Generate a unique filename
+                var fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
+                var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads", fileName);
 
-            return $"/uploads/{fileName}";
+                // Ensure the directory exists
+                Directory.CreateDirectory(Path.GetDirectoryName(filePath));
+
+                // Save the file to the specified location
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await file.CopyToAsync(stream); // Copy the file to the server
+                }
+
+                // Return the file path to be saved in the database
+                return $"/uploads/{fileName}";
+            }
+            catch (Exception ex)
+            {
+                // Handle any errors that occur during file save
+                throw new Exception("Error saving file: " + ex.Message);
+            }
         }
     }
 }

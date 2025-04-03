@@ -76,19 +76,21 @@ public class PropertyViewModel
     // Feature Information
     public string Feature { get; set; } = string.Empty;
 
-    // Images - Updated to store URLs as strings
-    public string Image1Url { get; set; }
-    public string Image2Url { get; set; }
-    public string Image3Url { get; set; }
-    public string Image4Url { get; set; }
-    public string FloorPlanImageUrl { get; set; }
+    // Images - URLs for existing images (used in Edit view)
+    public string? Image1Url { get; set; }  // Removed [Required]
+    public string? Image2Url { get; set; }  // Removed [Required]
+    public string? Image3Url { get; set; }  // Removed [Required]
+    public string? Image4Url { get; set; }  // Removed [Required]
+    public string? FloorPlanImageUrl { get; set; }  // Removed [Required]
 
-    // File Inputs for new image uploads
+    // File Inputs for new image uploads (used in AddProperty view)
+    [Required(ErrorMessage = "Main image is required.")]
     public IFormFile Image1 { get; set; }
-    public IFormFile Image2 { get; set; }
-    public IFormFile Image3 { get; set; }
-    public IFormFile Image4 { get; set; }
-    public IFormFile FloorPlanImage { get; set; }
+
+    public IFormFile? Image2 { get; set; }  // Made nullable
+    public IFormFile? Image3 { get; set; }  // Made nullable
+    public IFormFile? Image4 { get; set; }  // Made nullable
+    public IFormFile? FloorPlanImage { get; set; }  // Made nullable
 
     // Is Featured property
     [Required]
