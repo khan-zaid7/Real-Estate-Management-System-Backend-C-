@@ -1,0 +1,200 @@
+﻿@using RealEstateManagement.ViewModel
+@model AllPropertiesViewModel
+@{
+    ViewData["Title"] = "All Properties";
+    Layout = "~/Views/Shared/_AccountLayout.cshtml";
+}
+
+<div class="banner-full-row page-banner" style="background-image:url('@Url.Content("~/images/breadcromb.jpg")');">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h2 class="page-name float-left text-white text-uppercase mt-1 mb-0"><b>All Properties</b></h2>
+            </div>
+            <div class="col-md-6">
+                <nav aria-label="breadcrumb" class="float-left float-md-right">
+                    <ol class="breadcrumb bg-transparent m-0 p-0">
+                        <li class="breadcrumb-item text-white"><a asp-action="index" asp-controller="Home">Home</a></li>
+                        <li class="breadcrumb-item active">All Properties</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+
+        <!-- Search Form -->
+        <div class="row mt-4">
+            <div class="col-12">
+                <form method="get" asp-action="AllProperties" asp-controller="Property" class="property-search-form">
+                    <div class="row">
+                        <div class="col-md-6 col-lg-2">
+                            <div class="form-group">
+                                <select class="form-control" name="type">
+                                    <option value="">All Types</option>
+                                    <option value="apartment">Apartment</option>
+                                    <option value="flat">Flat</option>
+                                    <option value="building">Building</option>
+                                    <option value="house">House</option>
+                                    <option value="villa">Villa</option>
+                                    <option value="office">Office</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-2">
+                            <div class="form-group">
+                                <select class="form-control" name="stype">
+                                    <option value="">All Statuses</option>
+                                    <option value="rent">Rent</option>
+                                    <option value="sale">Sale</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-8 col-lg-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="city" placeholder="Enter City" value="@Context.Request.Query["city"]">
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-lg-2">
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-success w-100">Search</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="full-row">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="row">
+                    @foreach (var property in Model.Properties)
+                    {
+                        <div class="col-md-6">
+                            <div class="featured-thumb hover-zoomer mb-4">
+                                <div class="overlay-black overflow-hidden position-relative">
+                                    <img src="@(property.Image1 ?? "/images/property/default.jpg")" alt="@property.Title">
+                                    <div class="sale bg-success text-white">@property.SellingType</div>
+                                    <div class="price text-primary text-capitalize">
+                                        $@property.Price.ToString("N0")
+                                        <span class="text-white">@property.AreaSize Sqft</span>
+                                    </div>
+                                </div>
+                                <div class="featured-thumb-data shadow-one">
+                                    <div class="p-4">
+                                        <h5 class="text-secondary hover-text-success mb-2 text-capitalize">
+                                            <a asp-action="PropertyDetail" asp-route-id="@property.Id">@property.Title</a>
+                                        </h5>
+                                        <span class="location text-capitalize">
+                                            <i class="fas fa-map-marker-alt text-success"></i>
+                                            @property.City, @property.State
+                                        </span>
+                                    </div>
+                                    <div class="px-4 pb-4 d-inline-block w-100">
+                                        @if (property.User != null)
+                                        {
+                                            <div class="float-left text-capitalize">
+                                                <i class="fas fa-user text-success mr-1"></i>By : @property.User.UserName
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+
+            </div>
+            <div class="col-lg-4">
+                @if (Model.FeaturedProperty != null)
+                {
+                    <h4 class="double-down-line-left text-secondary position-relative pb-4 mb-4 mt-5">Featured Property</h4>
+                    <ul class="property_list_widget">
+                        <li>
+                            <img src="@(Model.FeaturedProperty.Image1 ?? "/images/property/default.jpg")" alt="@Model.FeaturedProperty.Title">
+                            <h6 class="text-secondary hover-text-success text-capitalize">
+                                <a asp-action="PropertyDetail" asp-route-id="@Model.FeaturedProperty.Id">@Model.FeaturedProperty.Title</a>
+                            </h6>
+                            <span class="font-14">
+                                <i class="fas fa-map-marker-alt icon-success icon-small"></i>
+                                @Model.FeaturedProperty.City, @Model.FeaturedProperty.State
+                            </span>
+                        </li>
+                    </ul>
+                }
+
+                <div class="sidebar-widget mt-5">
+                    <h4 class="double-down-line-left text-secondary position-relative pb-4 mb-4">Recently Added</h4>
+                    <ul class="property_list_widget">
+                        @foreach (var recentProperty in Model.Properties.Take(3))
+                        {
+                            <li>
+                                <img src="@(recentProperty.Image1 ?? "/images/property/default.jpg")" alt="@recentProperty.Title">
+                                <h6 class="text-secondary hover-text-success text-capitalize">
+                                    <a asp-action="PropertyDetail" asp-route-id="@recentProperty.Id">@recentProperty.Title</a>
+                                </h6>
+                                <span class="font-14">
+                                    <i class="fas fa-map-marker-alt icon-success icon-small"></i>
+                                    @recentProperty.City, @recentProperty.State
+                                </span>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+            <!-- Pagination -->
+            @if (Model.Pager != null && Model.Pager.TotalPages > 1)
+            {
+                <div class="col-12 mt-4">
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination justify-content-center">
+                            @if (Model.Pager.HasPrevious)
+                            {
+                                <li class="page-item">
+                                    <a class="page-link"
+                                       asp-action="AllProperties"
+                                       asp-route-type="@Model.CurrentType"
+                                       asp-route-stype="@Model.CurrentStype"
+                                       asp-route-city="@Model.CurrentCity"
+                                       asp-route-page="@(Model.Pager.CurrentPage - 1)">
+                                        &laquo; Previous
+                                    </a>
+                                </li>
+                            }
+
+                            @for (var i = 1; i <= Model.Pager.TotalPages; i++)
+                            {
+                                <li class="page-item @(i == Model.Pager.CurrentPage ? "active" : "")">
+                                    <a class="page-link"
+                                       asp-action="AllProperties"
+                                       asp-route-type="@Model.CurrentType"
+                                       asp-route-stype="@Model.CurrentStype"
+                                       asp-route-city="@Model.CurrentCity"
+                                       asp-route-page="@i">@i</a>
+                                </li>
+                            }
+
+                            @if (Model.Pager.HasNext)
+                            {
+                                <li class="page-item">
+                                    <a class="page-link"
+                                       asp-action="AllProperties"
+                                       asp-route-type="@Model.CurrentType"
+                                       asp-route-stype="@Model.CurrentStype"
+                                       asp-route-city="@Model.CurrentCity"
+                                       asp-route-page="@(Model.Pager.CurrentPage + 1)">
+                                        Next &raquo;
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                    </nav>
+                </div>
+            }
+        </div> <!-- End of col-lg-8 -->
+
+            
+        </div>
+    </div>
+</div>
