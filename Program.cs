@@ -28,6 +28,16 @@ builder.Services.AddIdentity<User, IdentityRole>(options =>
 
 var app = builder.Build();
 
+// Set the default culture to en-US (for dollar formatting)
+var supportedCultures = new[] { "en-US" };
+
+app.UseRequestLocalization(options =>
+    options
+        .AddSupportedCultures(supportedCultures)
+        .AddSupportedUICultures(supportedCultures)
+        .SetDefaultCulture("en-US")
+);
+
 await SeedService.SeedDatabase(app.Services);
 
 // Configure the HTTP request pipeline.

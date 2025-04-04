@@ -223,6 +223,11 @@ namespace RealEstateManagement.Controllers
             }
         }
 
+        [AllowAnonymous] // Allows access even if not logged in
+        public IActionResult AccessDenied()
+        {
+            return View(); // Returns "AccessDenied.cshtml"
+        }
 
     }
 

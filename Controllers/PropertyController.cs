@@ -10,7 +10,6 @@ using System.Text;
 namespace RealEstateManagement.Controllers
 {
 
-    [Authorize] // Ensure only authenticated users can access these actions
     public class PropertyController : Controller
     {
         private readonly UserManager<User> _userManager;
@@ -22,7 +21,7 @@ namespace RealEstateManagement.Controllers
             _userManager = userManager;
             _context = context;
         }
-
+        [Authorize(Roles = "Agent")]
         public async Task<IActionResult> SellerDashboard()
         {
             var user = await _userManager.GetUserAsync(User); 
@@ -43,12 +42,15 @@ namespace RealEstateManagement.Controllers
             return View();
         }
 
+        [Authorize(Roles = "Agent")]
         [HttpGet]
         public IActionResult AddProperty()
         {
             return View();
         }
 
+
+        [Authorize(Roles = "Agent")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> AddProperty(PropertyViewModel model)
@@ -140,6 +142,7 @@ namespace RealEstateManagement.Controllers
             }
         }
 
+        [Authorize(Roles = "Agent")]
         [HttpGet]
         public async Task<IActionResult> EditProperty(int id)
         {
@@ -191,6 +194,7 @@ namespace RealEstateManagement.Controllers
             return View(model);
         }
 
+        [Authorize(Roles = "Agent")]
         [HttpPost]
         public async Task<IActionResult> EditProperty(int id, EditPropertyViewModel model)
         {
@@ -272,6 +276,7 @@ namespace RealEstateManagement.Controllers
         }
 
 
+        [Authorize(Roles = "Agent")]
         private async Task<string> SaveFile(IFormFile file)
         {
             if (file == null || file.Length == 0)
@@ -302,6 +307,41 @@ namespace RealEstateManagement.Controllers
                 // Handle any errors that occur during file save
                 throw new Exception("Error saving file: " + ex.Message);
             }
+        }
+
+        public async Task<IActionResult> PropertyDetail(int id)
+        {
+            // Get current property with user details
+            var property = await _context.Properties
+                .Include(p => p.User)
+                .FirstOrDefaultAsync(p => p.Id == id);
+
+            if (property == null)
+            {
+                return NotFound();
+            }
+
+            // Get a featured property (excluding current property)
+            var featuredProperty = await _context.Properties
+                .Where(p => p.IsFeatured && p.Id != id)
+                .OrderByDescending(p => p.Id)
+                .FirstOrDefaultAsync();
+
+            // Get most recent property (excluding current and featured properties)
+            var recentPropertiesQuery = _context.Properties
+                .Where(p => p.Id != id && (featuredProperty == null || p.Id != featuredProperty.Id))
+                .OrderByDescending(p => p.Id);
+
+            var recentProperty = await recentPropertiesQuery.FirstOrDefaultAsync();
+
+            var viewModel = new PropertyDetailViewModel
+            {
+                CurrentProperty = property,
+                FeaturedProperty = featuredProperty,
+                RecentProperty = recentProperty
+            };
+
+            return View(viewModel);
         }
     }
 }

@@ -133,15 +133,15 @@
                                             </div>
                                             <div class="featured-thumb-data shadow-one">
                                                 <div class="p-3">
-                                                    <h5 class="text-secondary hover-text-success mb-2 text-capitalize">
-                                                        <a href="propertydetail.html?pid=@property.Id">@property.Title</a>
+                                                    <h5 class="text-secondary hover-text-success mb-2 text-capitalize" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                                                        <a asp-action="PropertyDetail" asp-controller="Property" asp-route-id="@property.Id">@property.Title</a>
                                                     </h5>
-                                                    <span class="location text-capitalize">
+                                                    <span class="location text-capitalize" style="display: inline-block; max-width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
                                                         <i class="fas fa-map-marker-alt text-success"></i> @property.City, @property.State
                                                     </span>
                                                 </div>
                                                 <div class="bg-gray quantity px-4 pt-4">
-                                                    <ul>
+                                                    <ul style="display: grid; grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); gap: 1px;">
                                                         <li><span>Size</span> @property.AreaSize Sqft</li>
                                                         <li><span>Beds</span> @property.Bedroom</li>
                                                         <li><span>Baths</span> @property.Bathroom</li>
@@ -150,7 +150,7 @@
                                                     </ul>
                                                 </div>
                                                 <div class="p-4 d-inline-block w-100">
-                                                    <div class="float-left text-capitalize">
+                                                    <div class="float-left text-capitalize" style="max-width: 50%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
                                                         <i class="fas fa-user text-success mr-1"></i> By : @property.User.UserName
                                                     </div>
                                                     <div class="float-right">
