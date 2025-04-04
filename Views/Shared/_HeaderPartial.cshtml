@@ -1,7 +1,19 @@
-﻿@using Microsoft.AspNetCore.Identity;
-@inject SignInManager<User> signInManager;
+﻿@using Microsoft.AspNetCore.Identity
+@using RealEstateManagement.Data
+@using Microsoft.EntityFrameworkCore
+@inject SignInManager<User> signInManager
+@inject AppDbContext dbContext
+@inject UserManager<User> userManager
 
-
+@{
+    var unreadCount = 0;
+    if (User.Identity.IsAuthenticated)
+    {
+        var userId = userManager.GetUserId(User);
+        unreadCount = await dbContext.Inquiries
+            .CountAsync(i => i.ReceiverId == userId && !i.IsRead);
+    }
+}
 <header id="header" class="transparent-header-modern fixed-header-bg-white w-100">
     <div class="top-header bg-secondary">
         <div class="container">
@@ -53,16 +65,13 @@
                                     <a class="nav-link" asp-controller="home" asp-action="index" role="button" aria-haspopup="true" aria-expanded="false">Home</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="about.html">About</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="contact.html">Contact</a>
+                                    <a class="nav-link" asp-action="about" asp-controller="Home" >About</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" asp-controller="property" asp-action="allproperties">Properties</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="agent.html">Agent</a>
+                                    <a class="nav-link" asp-action="agent" asp-controller="Home">Agent</a>
                                 </li>
                                 
                                 @if (signInManager.IsSignedIn(User))
@@ -83,7 +92,15 @@
                                     </li>
                                 }
                             </ul>
-                            <a class="btn btn-success d-none d-xl-block" style="border-radius:30px;" href="inquiries.html">View Inquires</a>
+                            <a asp-action="Index" asp-controller="Inquiry" class="btn btn-success position-relative">
+                                View Inquiries
+                                @if (unreadCount > 0)
+                                {
+                                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                        @unreadCount
+                                    </span>
+                                }
+                            </a>
                         </div>
                     </nav>
                 </div>

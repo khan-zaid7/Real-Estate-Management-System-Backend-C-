@@ -20,3 +20,9 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.badge.bg-danger {
+    font-size: 0.7rem;
+    padding: 0.25em 0.4em;
+    min-width: 1.5em;
+}

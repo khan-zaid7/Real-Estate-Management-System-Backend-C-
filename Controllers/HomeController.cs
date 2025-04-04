@@ -84,4 +84,28 @@ public class HomeController : Controller
     {
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
+    public IActionResult About()
+    {
+        return View();
+    }
+
+    public async Task<IActionResult> Agent()
+    {
+        // First get all users
+        var users = await userManager.Users.ToListAsync();
+
+        // Then filter by role on the client side
+        var agentUsers = new List<User>();
+
+        foreach (var user in users)
+        {
+            if (await userManager.IsInRoleAsync(user, "Agent"))
+            {
+                agentUsers.Add(user);
+            }
+        }
+
+        return View(agentUsers);
+    }
+
 }

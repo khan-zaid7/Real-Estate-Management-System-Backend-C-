@@ -345,59 +345,59 @@ namespace RealEstateManagement.Controllers
         }
 
         public async Task<IActionResult> AllProperties(
-     string type,
-     string stype,
-     string city,
-     int page = 1,
-     int pageSize = 2)
-        {
-            // Start with base query
-            var query = _context.Properties
-                .Include(p => p.User)
-                .Where(p => p.Status == "Available")
-                .AsQueryable();
+             string type,
+             string stype,
+             string city,
+             int page = 1,
+             int pageSize = 2)
+                {
+                    // Start with base query
+                    var query = _context.Properties
+                        .Include(p => p.User)
+                        .Where(p => p.Status == "Available")
+                        .AsQueryable();
 
-            // Apply filters
-            if (!string.IsNullOrEmpty(type))
-            {
-                query = query.Where(p => p.PropertyType.ToLower() == type.ToLower());
-            }
+                    // Apply filters
+                    if (!string.IsNullOrEmpty(type))
+                    {
+                        query = query.Where(p => p.PropertyType.ToLower() == type.ToLower());
+                    }
 
-            if (!string.IsNullOrEmpty(stype))
-            {
-                query = query.Where(p => p.SellingType.ToLower() == stype.ToLower());
-            }
+                    if (!string.IsNullOrEmpty(stype))
+                    {
+                        query = query.Where(p => p.SellingType.ToLower() == stype.ToLower());
+                    }
 
-            if (!string.IsNullOrEmpty(city))
-            {
-                query = query.Where(p => p.City.ToLower().Contains(city.ToLower()));
-            }
+                    if (!string.IsNullOrEmpty(city))
+                    {
+                        query = query.Where(p => p.City.ToLower().Contains(city.ToLower()));
+                    }
 
-            // Get total count for pagination
-            var totalItems = await query.CountAsync();
+                    // Get total count for pagination
+                    var totalItems = await query.CountAsync();
 
-            // Apply pagination
-            var properties = await query
-                .OrderByDescending(p => p.Id)
-                .Skip((page - 1) * pageSize)
-                .Take(pageSize)
-                .ToListAsync();
+                    // Apply pagination
+                    var properties = await query
+                        .OrderByDescending(p => p.Id)
+                        .Skip((page - 1) * pageSize)
+                        .Take(pageSize)
+                        .ToListAsync();
 
-            // Get featured property (excluding current filtered results)
-            var featuredProperty = await _context.Properties
-                .FirstOrDefaultAsync(p => p.IsFeatured && p.Status == "Available");
+                    // Get featured property (excluding current filtered results)
+                    var featuredProperty = await _context.Properties
+                        .FirstOrDefaultAsync(p => p.IsFeatured && p.Status == "Available");
 
-            var viewModel = new AllPropertiesViewModel
-            {
-                Properties = properties,
-                FeaturedProperty = featuredProperty,
-                CurrentType = type,
-                CurrentStype = stype,
-                CurrentCity = city,
-                Pager = new Pager(totalItems, page, pageSize)
-            };
+                    var viewModel = new AllPropertiesViewModel
+                    {
+                        Properties = properties,
+                        FeaturedProperty = featuredProperty,
+                        CurrentType = type,
+                        CurrentStype = stype,
+                        CurrentCity = city,
+                        Pager = new Pager(totalItems, page, pageSize)
+                    };
 
-            return View(viewModel);
+                    return View(viewModel);
         }
     }
 }

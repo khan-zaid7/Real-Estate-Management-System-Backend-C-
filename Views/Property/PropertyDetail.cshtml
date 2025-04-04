@@ -73,8 +73,11 @@
                         </div>
                         <br>
                         <div class="bg-success d-table px-3 py-2 rounded text-white text-capitalize">
-                            <a href="inquiries.html">Inquiry ?</a>
-                        </div>
+                            <a asp-controller="Inquiry" asp-action="Create" asp-route-propertyId="@Model.CurrentProperty.Id" >
+                                 Send Inquiry
+                            </a>
+                        </div
+
                         <h5 class="mt-2 text-secondary text-capitalize">@Model.CurrentProperty.Title</h5>
                         <span class="mb-sm-20 d-block text-capitalize">
                             <i class="fas fa-map-marker-alt text-success font-12"></i>

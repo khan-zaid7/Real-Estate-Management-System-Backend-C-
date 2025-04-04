@@ -1,0 +1,45 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+    Layout = "~/Views/Shared/_AccountLayout.cshtml";
+}
+@model List<User> 
+
+<div class="full-row">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h2 class="text-secondary double-down-line text-center mb-5">Our Agents</h2>
+            </div>
+        </div>
+        <div class="row">
+            @if (Model != null && Model.Any())
+            {
+                foreach (var agent in Model)
+                {
+                    <div class="col-md-6 col-lg-4">
+                        <div class="hover-zoomer bg-white shadow-one mb-4">
+                            <div class="py-3 text-center">
+                                <h5 class="text-secondary hover-text-success">
+                                    <a asp-action="AgentDetails" asp-route-id="@agent.Id">@agent.FullName</a>
+                                </h5>
+                                <span>Real Estate Agent</span>
+                                @if (!string.IsNullOrEmpty(agent.PhoneNumber))
+                                {
+                                    <div class="mt-2">
+                                        <i class="fas fa-phone"></i> @agent.PhoneNumber
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="col-12">
+                    <div class="alert alert-info">No agents found.</div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

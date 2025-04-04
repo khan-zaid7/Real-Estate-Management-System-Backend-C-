@@ -28,7 +28,7 @@
                     <a asp-action="AddProperty" asp-controller="Property" class="btn btn-primary">
                         <i class="fa fa-plus"></i> Add New Property
                     </a>
-                    <a asp-action="Inquiries" asp-controller="Property" class="btn btn-info">
+                    <a asp-action="Index" asp-controller="Inquiry" class="btn btn-info">
                         <i class="fa fa-envelope"></i> View Inquiries
                     </a>
                 </div>
@@ -71,9 +71,9 @@
                                                 <a asp-action="EditProperty" asp-controller="Property" asp-route-id="@property.Id" class="btn btn-sm btn-primary">
                                                     <i class="fa fa-edit"></i> Edit
                                                 </a>
-                                                <a asp-action="Delete" asp-controller="Property" asp-route-id="@property.Id" class="btn btn-sm btn-danger">
-                                                    <i class="fa fa-trash"></i> Delete
-                                                </a>
+                                                @* <a asp-action="Delete" asp-controller="Property" asp-route-id="@property.Id" class="btn btn-sm btn-danger"> *@
+                                                @*     <i class="fa fa-trash"></i> Delete *@
+                                                @* </a> *@
                                             </td>
                                         </tr>
                                     }
